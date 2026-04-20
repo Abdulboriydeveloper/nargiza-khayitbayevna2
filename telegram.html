@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabriklaymiz! – Nargiza Khayitbayevna</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Nunito:wght@600;700&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Nunito:wght@600;700&display=swap" />
+  </noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:      #22c55e;
+      --green-dark: #16a34a;
+      --tg:         #229ED9;
+      --tg-dark:    #1780b5;
+      --text:       #111827;
+      --muted:      #6b7280;
+      --white:      #ffffff;
+    }
+
+    body {
+      font-family: 'Nunito', 'Segoe UI', system-ui, sans-serif;
+      background: #f0fdf4;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 420px;
+      width: 100%;
+      margin: 0 auto;
+      background: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 28px 56px;
+      text-align: center;
+      box-shadow: 0 0 60px rgba(0,0,0,.07);
+    }
+
+    /* ── Check circle ── */
+    .check-wrap {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin-bottom: 28px;
+    }
+
+    .check-bg {
+      width: 96px;
+      height: 96px;
+      background: #dcfce7;
+      border-radius: 50%;
+      position: absolute;
+      inset: 0;
+      animation: popIn .55s cubic-bezier(.175,.885,.32,1.275) both;
+    }
+
+    .check-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 3px solid #bbf7d0;
+      animation: popIn .55s .1s cubic-bezier(.175,.885,.32,1.275) both;
+    }
+
+    .check-svg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .check-svg path {
+      stroke-dasharray: 44;
+      stroke-dashoffset: 44;
+      animation: drawCheck .45s .45s ease forwards;
+    }
+
+    /* ── Confetti emojis ── */
+    .confetti {
+      font-size: 28px;
+      line-height: 1;
+      display: block;
+      margin-bottom: 16px;
+      animation: bounceIn .6s .3s cubic-bezier(.175,.885,.32,1.275) both;
+    }
+
+    /* ── Title ── */
+    .title {
+      font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+      font-size: clamp(24px, 6vw, 32px);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 12px;
+      animation: fadeUp .5s .35s ease both;
+    }
+
+    .title .green { color: var(--green-dark); }
+
+    /* ── Subtitle ── */
+    .subtitle {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 300px;
+      margin: 0 auto 28px;
+      animation: fadeUp .5s .45s ease both;
+    }
+
+    /* ── Event pill ── */
+    .event-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f0fdf4;
+      border: 1.5px solid #bbf7d0;
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #14532d;
+      margin-bottom: 36px;
+      animation: fadeUp .5s .5s ease both;
+    }
+
+    /* ── Arrow bounce ── */
+    .arrow-down {
+      font-size: 28px;
+      line-height: 1;
+      display: block;
+      margin-bottom: 14px;
+      animation: arrowBounce 1s .9s ease infinite;
+    }
+
+    /* ── BIG Telegram button ── */
+    .tg-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: 100%;
+      padding: 22px 28px;
+      background: linear-gradient(135deg, #31b6e8 0%, #1a7fb0 100%);
+      color: #fff;
+      font-family: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: .3px;
+      text-decoration: none;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      /* SHAKE animation on the whole button */
+      animation: fadeUp .5s .6s ease both, btnShake 1.8s 1.5s ease infinite;
+      box-shadow:
+        0 8px 0 #1265a0,
+        0 12px 32px rgba(26,127,176,.45);
+      transform-origin: center bottom;
+      transition: box-shadow .15s ease, transform .15s ease;
+    }
+
+    .tg-btn:hover {
+      box-shadow: 0 4px 0 #1265a0, 0 8px 24px rgba(26,127,176,.5);
+      transform: translateY(3px);
+    }
+
+    .tg-btn:active {
+      box-shadow: 0 1px 0 #1265a0, 0 4px 12px rgba(26,127,176,.4);
+      transform: translateY(6px);
+    }
+
+    /* Shine overlay */
+    .tg-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -60%;
+      width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+      transform: skewX(-20deg);
+      animation: shine 2.8s 2s ease infinite;
+    }
+
+    .tg-btn-icon {
+      flex-shrink: 0;
+      background: rgba(255,255,255,.2);
+      border-radius: 12px;
+      width: 44px; height: 44px;
+      display: grid;
+      place-items: center;
+    }
+
+    .tg-btn-text { text-align: left; line-height: 1.2; }
+    .tg-btn-text small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      opacity: .8;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .tg-btn-text strong { font-size: 17px; }
+
+    /* Arrow inside button */
+    .btn-arrow {
+      margin-left: auto;
+      font-size: 22px;
+      flex-shrink: 0;
+      animation: arrowRight 1s ease infinite;
+    }
+
+    /* ── Note ── */
+    .note {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.65;
+      animation: fadeUp .5s .75s ease both;
+    }
+
+    /* ── Keyframes ── */
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(.3); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes bounceIn {
+      from { opacity: 0; transform: scale(.4) rotate(-20deg); }
+      to   { opacity: 1; transform: scale(1) rotate(0); }
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes arrowBounce {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(8px); }
+    }
+
+    @keyframes arrowRight {
+      0%,100% { transform: translateX(0); }
+      50%      { transform: translateX(5px); }
+    }
+
+    /* Big shake on the button — attracts eye */
+    @keyframes btnShake {
+      0%,100%  { transform: rotate(0deg) translateY(0); }
+      5%       { transform: rotate(-2.5deg) translateY(-2px); }
+      10%      { transform: rotate(2.5deg) translateY(-3px); }
+      15%      { transform: rotate(-2deg) translateY(-2px); }
+      20%      { transform: rotate(2deg) translateY(-1px); }
+      25%      { transform: rotate(-1deg) translateY(0); }
+      30%      { transform: rotate(1deg); }
+      35%      { transform: rotate(0deg); }
+    }
+
+    @keyframes shine {
+      0%   { left: -60%; }
+      40%,100% { left: 130%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; }
+    }
+
+    @media (min-width: 480px) {
+      .page { margin: 32px auto; border-radius: 28px; min-height: unset; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page" role="main" aria-label="Ro'yxatdan o'tish tasdiqlandi">
+
+    <!-- Success check -->
+    <div class="check-wrap" aria-hidden="true">
+      <div class="check-bg"></div>
+      <div class="check-ring"></div>
+      <span class="check-svg">
+        <svg width="46" height="46" viewBox="0 0 46 46" fill="none">
+          <path class="check-svg" d="M10 23L20 33L36 14"
+                stroke="#16a34a" stroke-width="4.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </div>
+
+    <!-- Confetti -->
+    <span class="confetti" aria-hidden="true">🎉🎊🎉</span>
+
+    <!-- Title -->
+    <h1 class="title">
+      Tabriklaymiz!<br />
+      <span class="green">Ro'yxatdan o'tdingiz!</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="subtitle">
+      Vebinar havolasi va barcha ma'lumotlar<br />
+      <strong>Telegram kanalimizda</strong> bo'ladi.<br />
+      Hoziroq qo'shiling! 👇
+    </p>
+
+    <!-- Event info pill -->
+    <div class="event-pill" role="note" aria-label="Vebinar vaqti">
+      📅 27–28 aprel &nbsp;·&nbsp; ⏰ Soat 20:00
+    </div>
+
+    <!-- Bouncing arrow pointing at button -->
+    <span class="arrow-down" aria-hidden="true">👇</span>
+
+    <!-- BIG Telegram button -->
+    <a
+      href="https://t.me/+GKsQbjbsMw1hMTUy"
+      class="tg-btn"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Telegram kanalga qo'shilish — vebinar havolasini olish uchun"
+      id="tg-join-btn"
+    >
+      <!-- Telegram icon -->
+      <span class="tg-btn-icon" aria-hidden="true">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <path d="M21.5 2.5L2 10.5L9 12.5M21.5 2.5L14.5 21.5L9 12.5M21.5 2.5L9 12.5"
+                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+
+      <span class="tg-btn-text">
+        <small>Hoziroq qo'shiling</small>
+        <strong>Telegram kanal →</strong>
+      </span>
+
+      <span class="btn-arrow" aria-hidden="true">➜</span>
+    </a>
+
+    <!-- Reassurance note -->
+    <p class="note">
+      ⚠️ Kanalga qo'shilmasangiz, vebinar havolasini olmasligi mumkin.<br/>
+      🎁 Kanalda <strong>"Kraskalar to'plami"</strong> sovg'asi ham beriladi!
+    </p>
+
+  </main>
+
+  <!-- Meta Pixel — deferred -->
+  <script>
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        !function(f,b,e,v,n,t,s){
+          if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)
+        }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '890684116697156');
+        fbq('track', 'PageView');
+        fbq('track', 'Lead');
+      }, 0);
+    });
+
+    document.getElementById('tg-join-btn').addEventListener('click', function () {
+      if (typeof fbq === 'function') fbq('track', 'Contact');
+    });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" alt=""
+         src="https://www.facebook.com/tr?id=890684116697156&ev=Lead&noscript=1" />
+  </noscript>
+
+</body>
+</html>
